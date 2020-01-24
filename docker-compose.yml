@@ -1,0 +1,41 @@
+version: '3'
+services:
+  mongo:
+    container_name: mongo_db_container
+    image: 'mongo:4.0.4-xenial'
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_INITDB_DATABASE:school
+    volumes:
+      - ./data:/data/db
+
+  backend:
+    container_name: backend_api_container
+    image: 'node:10.14.0'
+    depends_on:
+      - mongo
+    user: "node"
+    working_dir: /home/node/backend
+    volumes:
+      - ./backend/:/home/node/backend
+    command: nodemon ./bin/www
+    ports:
+      - '8001:8001'
+    networks:
+      - default
+
+  frontend:
+    container_name: frontend_container
+    image: 'node:10.14.0'
+    user: "node"
+    working_dir: /home/node/frontend
+    environment:
+      - PORT=3000
+    volumes:
+      - ./frontend/:/home/node/frontend
+    ports:
+      - '8000:3000'
+    networks:
+      - default

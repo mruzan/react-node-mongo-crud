@@ -1,0 +1,22 @@
+{
+  "APP_URL": "http://localhost:8000",
+  "RESPONSE": {
+    "SUCCESS_TEXT": "Success",
+    "ERROR_TEXT": "Error",
+    "IN_USE": "this id is in use",
+    "CODE": {
+      "NOT_FOUND": "404",
+      "SUCCESS": "200",
+      "ERROR": "400",
+      "FORBIDDEN": "403",
+      "UNAUTHORIZED": "401"
+    }
+  },
+  "REDIS": {
+    "HOST": "localhost",
+    "PORT": "6379",
+    "NAME": "redis"
+  },
+  "DATABASE_URL": "mongodb://mongo:27017/school"
+}
+
